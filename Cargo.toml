@@ -1,5 +1,6 @@
 [workspace]
 members = [
     "crates/warp-demo",
-    "crates/wasmedge-demo"
+    "crates/wasmedge-demo",
+    "crates/wasmtime-demo"
 ]
