@@ -5,3 +5,7 @@ members = [
     "crates/wasmtime-demo",
     "crates/pyo3-demo"
 ]
+
+[workspace.dependencies]
+anyhow = "1.0.44"
+

@@ -7,4 +7,4 @@ edition = "2021"
 
 [dependencies]
 wasmtime = "0.35.1"
-anyhow = "1.0.44"
+anyhow = { workspace = true }

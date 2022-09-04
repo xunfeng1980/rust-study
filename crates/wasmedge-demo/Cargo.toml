@@ -9,6 +9,7 @@ edition = "2021"
 wasmedge-sdk = "0.4.0"
 wasmedge-sys = "0.9.0"
 wasmedge-types = "0.2.1"
+anyhow = { workspace = true }
 
 [features]
 aot = []
