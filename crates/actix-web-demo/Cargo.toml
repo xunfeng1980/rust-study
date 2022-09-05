@@ -1,0 +1,15 @@
+[package]
+name = "actix-web-demo"
+version = "0.1.0"
+edition = "2021"
+
+
+[dependencies]
+actix-web = "4"
+actix-settings = "0.6"
+actix-identity = { version = "0.5.2"}
+actix-session = { version = "0.7", features = ["redis-rs-session", "cookie-session"] }
+log = "0.4"
+log4rs = "1.1"
+sqlx = { "version" = "0.5.11", features = ["runtime-actix-rustls", "macros", "mysql", "chrono", "json", "uuid", "migrate"] }
+dotenv = "0.15.0"

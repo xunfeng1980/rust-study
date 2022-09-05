@@ -1,0 +1,13 @@
+refresh_rate: 30 seconds
+appenders:
+  stdout:
+    kind: console
+root:
+  level: info
+  appenders:
+    - stdout
+loggers:
+  sqlx::query:
+    level: debug
+    appenders:
+      - stdout
