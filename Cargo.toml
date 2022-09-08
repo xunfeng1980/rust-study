@@ -4,7 +4,8 @@ members = [
     "crates/wasmedge-demo",
     "crates/wasmtime-demo",
     "crates/pyo3-demo",
-    "crates/actix-web-demo"
+    "crates/actix-web-demo",
+    "crates/rust-bert-demo"
 ]
 
 [workspace.dependencies]
