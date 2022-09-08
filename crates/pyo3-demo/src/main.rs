@@ -30,6 +30,7 @@ fn main() -> PyResult<()> {
         // pass arguments as rust tuple
         let args = (arg1, arg2, arg3);
         fun.call1(py, args)?;
+        println!("print form rust");
         Ok(())
     })
 }
