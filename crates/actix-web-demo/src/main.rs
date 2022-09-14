@@ -11,6 +11,7 @@ use controller::hello::*;
 use controller::account::{index, login, logout};
 
 pub mod controller;
+pub mod middleware;
 
 #[actix_web::main] // or #[tokio::main]
 async fn main() -> std::io::Result<()> {
