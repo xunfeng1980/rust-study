@@ -6,7 +6,8 @@ members = [
     "crates/pyo3-demo",
     "crates/actix-web-demo",
     "crates/rust-bert-demo",
-    "crates/raft-demo"
+    "crates/raft-demo",
+    "crates/crossbeam-demo",
 ]
 
 [workspace.dependencies]
