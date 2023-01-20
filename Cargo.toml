@@ -11,6 +11,7 @@ members = [
     "crates/arrow-demo",
     "crates/admission-controller-demo",
     "crates/wasm-wasi-demo",
+    "crates/irmin-rs-demo",
 ]
 
 [workspace.dependencies]
