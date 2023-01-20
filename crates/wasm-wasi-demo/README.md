@@ -1,0 +1,1 @@
+wasmedge --dir /helloworld:/tmp/helloworld ../../target/wasm32-wasi/debug/wasm-wasi-demo.wasm

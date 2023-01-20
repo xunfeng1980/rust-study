@@ -9,6 +9,8 @@ members = [
     "crates/raft-demo",
     "crates/crossbeam-demo",
     "crates/arrow-demo",
+    "crates/admission-controller-demo",
+    "crates/wasm-wasi-demo",
 ]
 
 [workspace.dependencies]
