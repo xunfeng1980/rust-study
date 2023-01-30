@@ -1,10 +1,9 @@
 // Import rust's io and filesystem module
-use std::io::prelude::*;
 use std::fs;
+use std::io::prelude::*;
 
 // Entry point to our WASI applications
 fn main() {
-
     // Print out hello world!
     // This will handle writing to stdout for us using the WASI APIs (e.g fd_write)
     println!("Hello world!");

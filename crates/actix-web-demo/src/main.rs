@@ -1,14 +1,14 @@
 use actix_identity::IdentityMiddleware;
-use actix_web::{web, App, Error, HttpResponse, HttpServer};
-use actix_web::middleware::Logger;
-use actix_session::{Session, SessionMiddleware, storage::RedisSessionStore};
 use actix_session::storage::CookieSessionStore;
+use actix_session::{storage::RedisSessionStore, Session, SessionMiddleware};
 use actix_web::cookie::Key;
+use actix_web::middleware::Logger;
+use actix_web::{web, App, Error, HttpResponse, HttpServer};
 
 use log::info;
 
-use controller::hello::*;
 use controller::account::{index, login, logout};
+use controller::hello::*;
 
 pub mod controller;
 pub mod middleware;
@@ -16,8 +16,11 @@ pub mod middleware;
 #[actix_web::main] // or #[tokio::main]
 async fn main() -> std::io::Result<()> {
     // todo: log4rs path is too long
-    log4rs::init_file("./crates/actix-web-demo/src/resources/config/log4rs.yaml",
-                      Default::default()).unwrap();
+    log4rs::init_file(
+        "./crates/actix-web-demo/src/resources/config/log4rs.yaml",
+        Default::default(),
+    )
+    .unwrap();
     info!("Server start on 127.0.0.1:8080");
     let secret_key = Key::generate();
     HttpServer::new(move || {
@@ -40,10 +43,9 @@ async fn main() -> std::io::Result<()> {
             .service(login)
             .service(logout)
             .service(greet)
-
     })
-        .bind(("127.0.0.1", 8080))
-        .unwrap()
-        .run()
-        .await
+    .bind(("127.0.0.1", 8080))
+    .unwrap()
+    .run()
+    .await
 }

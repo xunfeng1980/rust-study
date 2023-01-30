@@ -1,6 +1,5 @@
-use actix_web::{get, Responder, web};
-use log::{info, debug, warn, error};
-
+use actix_web::{get, web, Responder};
+use log::{debug, error, info, warn};
 
 #[get("/hello/{name}")]
 pub async fn greet(name: web::Path<String>) -> impl Responder {

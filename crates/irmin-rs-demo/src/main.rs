@@ -72,8 +72,8 @@ fn main() -> Result<(), Error> {
             "y": 0,
             "z": 3,
         })
-            .as_object()
-            .unwrap()
+        .as_object()
+        .unwrap()
     );
 
     Ok(())

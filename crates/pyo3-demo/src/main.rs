@@ -1,6 +1,5 @@
 fn main() {}
 
-
 #[cfg(test)]
 mod tests {
     // 注意这个惯用法：在 tests 模块中，从外部作用域导入所有名字。
@@ -25,7 +24,11 @@ mod tests {
                     print('called with no arguments')",
                 "",
                 "",
-            ).expect("").getattr("example").expect("").into();
+            )
+            .expect("")
+            .getattr("example")
+            .expect("")
+            .into();
 
             // call object without any arguments
             fun.call0(py).expect("call python function failed");
@@ -42,15 +45,18 @@ mod tests {
     }
 
     #[test]
-    fn test_print_py_version()
-    {
+    fn test_print_py_version() {
         Python::with_gil(|py| {
             let sys = py.import("sys").unwrap();
             let version: String = sys.getattr("version").unwrap().extract().unwrap();
 
             let locals = [("os", py.import("os").unwrap())].into_py_dict(py);
             let code = "os.getenv('USER') or os.getenv('USERNAME') or 'Unknown'";
-            let user: String = py.eval(code, None, Some(&locals)).unwrap().extract().unwrap();
+            let user: String = py
+                .eval(code, None, Some(&locals))
+                .unwrap()
+                .extract()
+                .unwrap();
 
             println!("Hello {}, I'm Python {}", user, version)
         });
@@ -65,13 +71,12 @@ mod tests {
 unmasker = pipeline('fill-mask', model='albert-base-v2')"#,
                 "",
                 "",
-            ).unwrap();
+            )
+            .unwrap();
 
-            let args = ("Hello I'm a [MASK] model.", );
+            let args = ("Hello I'm a [MASK] model.",);
             let res: &PyAny = fun.getattr("unmasker").unwrap().call1(args).unwrap();
             println!("{:?}", res);
         });
     }
 }
-
-

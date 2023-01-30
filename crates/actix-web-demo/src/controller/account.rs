@@ -3,8 +3,7 @@ use actix_web::{
     cookie::Key, get, middleware::Logger, post, App, HttpMessage, HttpRequest, HttpResponse,
     HttpServer, Responder,
 };
-use log::{info, debug, warn, error};
-
+use log::{debug, error, info, warn};
 
 #[get("/account")]
 pub async fn index(user: Option<Identity>) -> impl Responder {
@@ -33,6 +32,3 @@ pub async fn logout(user: Identity) -> impl Responder {
     user.logout();
     HttpResponse::NoContent()
 }
-
-
-

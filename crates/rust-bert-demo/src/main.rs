@@ -1,5 +1,5 @@
-use std::time::Instant;
 use rust_bert::pipelines::question_answering::{QaInput, QuestionAnsweringModel};
+use std::time::Instant;
 
 fn main() {
     let qa_model = QuestionAnsweringModel::new(Default::default()).unwrap();
@@ -13,4 +13,3 @@ fn main() {
     }
     println!("执行时间: {}", now.elapsed().as_millis());
 }
-

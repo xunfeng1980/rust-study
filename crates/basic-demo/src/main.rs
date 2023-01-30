@@ -10,14 +10,12 @@ fn main() {
     println!("Hello, world!");
 }
 
-
 #[test]
 fn test01() {
     // assert_eq!(1u32, 1i32);
     let i = 2;
     let b = i - 1i32;
 }
-
 
 #[test]
 fn test_tuple() {
@@ -30,7 +28,6 @@ fn test_tuple() {
     let (a, b) = reverse((1, false));
     println!("{a} {b}")
 }
-
 
 #[test]
 fn test_slice() {
@@ -50,7 +47,6 @@ fn test_slice() {
     reverse(&mut xs);
 }
 
-
 #[test]
 fn test_struct() {
     #[derive(Debug)]
@@ -64,7 +60,10 @@ fn test_struct() {
         }
     }
 
-    let mut p = Person { name: String::from("a"), age: 1 };
+    let mut p = Person {
+        name: String::from("a"),
+        age: 1,
+    };
     p.name = String::from("b");
     println!("{p}");
 
@@ -201,7 +200,6 @@ fn test_conv() {
     let num: Number = int.into();
     println!("My number is {num}");
 
-
     // TryFrom
 
     assert_eq!(EvenNumber::try_from(8), Ok(EvenNumber(8)));
@@ -288,7 +286,10 @@ fn test_trait() {
     impl Animal for Sheep {
         // `Self` is the implementor type: `Sheep`.
         fn new(name: &'static str) -> Sheep {
-            Sheep { name: name, naked: false }
+            Sheep {
+                name: name,
+                naked: false,
+            }
         }
 
         fn name(&self) -> &'static str {
@@ -330,21 +331,16 @@ fn test_trait() {
 fn test_macro() {
     // This is a simple macro named `say_hello`.
     macro_rules! say_hello {
-    // `()` indicates that the macro takes no argument.
-    () => {
-        // The macro will expand into the contents of this block.
-        println!("Hello!");
-    };
-    ($e:literal) => {
-        // The macro will expand into the contents of this block.
-        println!("Hello! {}",$e);
-    };
+        // `()` indicates that the macro takes no argument.
+        () => {
+            // The macro will expand into the contents of this block.
+            println!("Hello!");
+        };
+        ($e:literal) => {
+            // The macro will expand into the contents of this block.
+            println!("Hello! {}", $e);
+        };
     }
     say_hello!();
     say_hello!("hhh")
 }
-
-
-
-
-

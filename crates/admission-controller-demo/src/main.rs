@@ -31,7 +31,9 @@ async fn main() -> anyhow::Result<()> {
     pods.create(&PostParams::default(), &p).await?;
 
     // Wait until the pod is running, otherwise we get 500 error.
-    let lp = ListParams::default().fields("metadata.name=example").timeout(10);
+    let lp = ListParams::default()
+        .fields("metadata.name=example")
+        .timeout(10);
     let mut stream = pods.watch(&lp, "0").await?.boxed();
     while let Some(status) = stream.try_next().await? {
         match status {
@@ -63,11 +65,15 @@ async fn main() -> anyhow::Result<()> {
     let mut stdout = tokio::io::stdout();
     // pipe current stdin to the stdin writer from ws
     tokio::spawn(async move {
-        tokio::io::copy(&mut stdin, &mut stdin_writer).await.unwrap();
+        tokio::io::copy(&mut stdin, &mut stdin_writer)
+            .await
+            .unwrap();
     });
     // pipe stdout from ws to current stdout
     tokio::spawn(async move {
-        tokio::io::copy(&mut stdout_reader, &mut stdout).await.unwrap();
+        tokio::io::copy(&mut stdout_reader, &mut stdout)
+            .await
+            .unwrap();
     });
     // When done, type `exit\n` to end it, so the pod is deleted.
     let status = attached.take_status().unwrap().await;
