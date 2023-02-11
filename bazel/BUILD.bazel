@@ -1,0 +1,12 @@
+load(
+    "@rules_rust//cargo:defs.bzl",
+    "cargo_build_script",
+)
+load("@rules_rust//rust:defs.bzl", "rust_binary")
+
+rust_binary(
+    name = "bazel",
+    srcs = glob(["src/**/*.rs"]),
+    edition = "2018",
+    deps = []
+)
