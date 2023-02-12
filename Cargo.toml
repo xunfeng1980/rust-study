@@ -11,6 +11,7 @@ members = [
     "crates/wasm-wasi-demo",
     "crates/irmin-rs-demo",
     "crates/basic-demo",
+    "crates/yew-app-demo",
 ]
 
 [workspace.dependencies]
