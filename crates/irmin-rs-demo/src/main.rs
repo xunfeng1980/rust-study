@@ -66,15 +66,13 @@ fn main() -> Result<(), Error> {
 
     // Check that the contents have been merged correctly
     let v = store.find(&path)?.unwrap();
-    assert!(
-        &v == json!({
+    assert_eq!(&v, json!({
             "x": 0,
             "y": 0,
             "z": 3,
         })
         .as_object()
-        .unwrap()
-    );
+        .unwrap());
 
     Ok(())
 }
