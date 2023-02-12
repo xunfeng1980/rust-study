@@ -1,3 +1,3 @@
 ```shell
-bazel run bazel
+bazel run //:bazel
 ```
