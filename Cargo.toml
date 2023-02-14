@@ -12,8 +12,9 @@ members = [
     "crates/irmin-rs-demo",
     "crates/basic-demo",
     "crates/yew-app-demo",
+    "crates/axum-demo",
 ]
 
 [workspace.dependencies]
-anyhow = "1.0.44"
+anyhow = "1"
 
