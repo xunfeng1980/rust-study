@@ -3,8 +3,10 @@
 extern crate core;
 
 use std::convert::Infallible;
-use std::fmt;
+use std::{fmt, thread};
 use std::fmt::{Display, Formatter};
+use std::thread::sleep;
+use std::time::Duration;
 
 fn main() {
     println!("Hello, world!");
@@ -357,5 +359,39 @@ fn test_str() {
         println!("{a}")
     }
     test_str(&b);
+    println!("{a} {b}");
+    a = String::from("ccc");
     println!("{a} {b}")
+}
+
+use crossbeam;
+use crossbeam::channel::unbounded;
+use crossbeam::select;
+
+#[test]
+fn test_channel() {
+    let (tx, rx) = unbounded();
+    thread::spawn(move || loop {
+        tx.send(42).unwrap();
+        sleep(Duration::from_millis(500))
+    });
+
+
+    select! {
+                    recv(rx) -> msg => println!("{:?}",msg)
+        }
+    sleep(Duration::from_millis(1500));
+    select! {
+                    recv(rx) -> msg => println!("{:?}",msg)
+        }
+
+    // ?
+    loop {
+        select! {
+                    recv(rx) -> msg => println!("{:?}",msg)
+        }
+        sleep(Duration::from_millis(5000));
+        break;
+    }
+    sleep(Duration::from_millis(15000));
 }

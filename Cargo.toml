@@ -14,6 +14,7 @@ members = [
     "crates/yew-app-demo",
     "crates/axum-demo",
     "crates/lance-demo",
+    "crates/rayon-demo",
 ]
 
 [workspace.dependencies]
