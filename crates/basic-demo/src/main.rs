@@ -344,3 +344,11 @@ fn test_macro() {
     say_hello!();
     say_hello!("hhh")
 }
+
+#[test]
+fn test_str(){
+    let mut a = String::from("123a");
+    let mut b = "123b";
+    b = a.as_str();
+    println!("{a} {b}")
+}
