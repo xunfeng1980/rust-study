@@ -346,9 +346,16 @@ fn test_macro() {
 }
 
 #[test]
-fn test_str(){
+fn test_str() {
     let mut a = String::from("123a");
     let mut b = "123b";
-    b = a.as_str();
+    fn test_string(a: &String) {
+        println!("{a}")
+    }
+    test_string(&a);
+    fn test_str(a: &str) {
+        println!("{a}")
+    }
+    test_str(&b);
     println!("{a} {b}")
 }
