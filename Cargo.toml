@@ -16,6 +16,7 @@ members = [
     "crates/lance-demo",
     "crates/rayon-demo",
     "crates/mockall-demo",
+    "crates/opendal-demo",
 ]
 
 [workspace.dependencies]
