@@ -1,10 +1,14 @@
+#![feature(slice_pattern)]
 #![allow(dead_code)]
 
 extern crate core;
 
+use core::slice::SlicePattern;
 use std::convert::Infallible;
 use std::{fmt, thread};
 use std::fmt::{Display, Formatter};
+use std::fs::File;
+use std::io::Read;
 use std::thread::sleep;
 use std::time::Duration;
 
@@ -47,6 +51,13 @@ fn test_slice() {
     let mut xs: [i32; 5] = [1, 2, 3, 4, 5];
     analyze_slice(&xs);
     reverse(&mut xs);
+    println!("{:?}", &xs);
+    let mut v = &mut xs[1..3];
+    println!("{:?}", &v);
+    println!("{:?}", &v[1]);
+    v[1] = 1;
+    println!("{:?}", &v);
+    println!("{:?}", &xs);
 }
 
 #[test]
@@ -394,4 +405,65 @@ fn test_channel() {
         break;
     }
     sleep(Duration::from_millis(15000));
+}
+
+
+#[test]
+fn test_result() {
+    let mut file = File::open("../flake.nix").unwrap();
+    let mut buf: Vec<u8> = vec![];
+    file.read(&mut buf).expect("TODO: panic message");
+    println!("{:?}", String::from_utf8(buf))
+}
+
+#[test]
+fn test_string() {
+    let mut vv = String::from("你好");
+    println!("{:?}", vv.bytes());
+    let mut v = vv.as_bytes();
+    println!("{:?}", String::from_utf8(Vec::from(v.as_slice())).unwrap_or_default());
+
+    let ip = "192.168.1.1".parse::<std::net::IpAddr>().unwrap();
+    println!("{}", ip)
+}
+
+#[test]
+fn test_partial_move() {
+    #[derive(Debug)]
+    struct Person {
+        name: String,
+        age: Box<u8>,
+    }
+
+    let person = Person {
+        name: String::from("Alice"),
+        age: Box::new(20),
+    };
+
+    // `name` is moved out of person, but `age` is referenced
+    let Person { name, ref age } = person;
+
+    println!("The person's age is {}", age);
+
+    println!("The person's name is {}", name);
+
+
+    // Error! borrow of partially moved value: `person` partial move occurs
+    // println!("The person struct is {:?}", person);
+
+    // `person` cannot be used but `person.age` can be used as it is not moved
+    println!("The person's age from person struct is {}", person.age);
+    // println!("The person's name from person struct is {}", person.name);
+}
+
+
+#[test]
+fn test_option_take() {
+    let mut x = Some(2);
+    let mut y = x.take();
+    println!("{:?} {:?}", x, y);
+    x = y.take();
+    println!("{:?} {:?}", x, y);
+    (x, y) = (y, x);
+    println!("{:?} {:?}", x, y);
 }
